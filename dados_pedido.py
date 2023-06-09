@@ -1,4 +1,4 @@
-nome = "Teste cliente 4"
+nome = "Teste cliente 7"
 
 cpf_cnpj = "22755775426"
 

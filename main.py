@@ -2,7 +2,7 @@ import requests
 from configparser import ConfigParser
 import json
 import time
-
+import json_builder
 
 # Diretorios
 mainDir = "C:\\Users\\Usefr\\Desktop\\TinyAPI\\"
@@ -28,6 +28,11 @@ config_object = ConfigParser()
 config_object.read(dirToken)
 KEY = config_object["KEY"]
 token = KEY["token"]
+
+# Chama a função que constroi o JSON a partir dos dados recebidos
+json_builder.build_json()
+
+time.sleep(1)
 
 # Lê o json que contem o pedido
 read_json(dirPedido)
