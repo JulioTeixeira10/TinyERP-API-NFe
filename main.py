@@ -5,7 +5,7 @@ import time
 import json_builder
 
 # Diretorios
-mainDir = "C:\\Users\\Usefr\\Desktop\\TinyAPI\\"
+mainDir = "C:\\TinyAPI\\"
 dirToken = f"{mainDir}" + "token.cfg"
 dirPedido = f"{mainDir}" + "pedido.json"
 dirResposta = f"{mainDir}" + "resposta.json"

@@ -3,7 +3,7 @@ import dados_pedido
 
 def build_json():
     # Diretorio onde será armazenado o pedido
-    dirPedido = "C:\\Users\\Usefr\\Desktop\\TinyAPI\\pedido.json"
+    dirPedido = "C:\\TinyAPI\\pedido.json"
 
     # Constroi a estrutura do JSON com as informções do pedido
     data = {
