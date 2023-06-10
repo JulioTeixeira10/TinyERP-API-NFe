@@ -1,7 +1,7 @@
 {
    "pedido": {
       "cliente": {
-         "nome": "Teste cliente 10",
+         "nome": "CONSUMIDOR",
          "cpf_cnpj": "22755774584"
       },
       "itens": [
@@ -33,6 +33,6 @@
             }
          }
       ],
-      "valor_desconto": "20.00"
+      "valor_desconto": "28.98"
    }
 }
