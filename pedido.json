@@ -1,8 +1,8 @@
 {
    "pedido": {
       "cliente": {
-         "nome": "Teste cliente 7",
-         "cpf_cnpj": "22755775426"
+         "nome": "Teste cliente 8",
+         "cpf_cnpj": "22755774584"
       },
       "itens": [
          {
@@ -33,6 +33,6 @@
             }
          }
       ],
-      "valor_desconto": "28.73"
+      "valor_desconto": "20.00"
    }
 }

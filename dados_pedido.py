@@ -1,8 +1,8 @@
-nome = "Teste cliente 7"
+nome = "Teste cliente 8"
 
-cpf_cnpj = "22755775426"
+cpf_cnpj = "22755774584"
 
-desconto = "28.73"
+desconto = "20.00"
 
 itens = [
     {
