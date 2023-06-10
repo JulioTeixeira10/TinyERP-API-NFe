@@ -1,0 +1,38 @@
+{
+   "pedido": {
+      "cliente": {
+         "nome": "CONSUMIDOR",
+         "cpf_cnpj": "22755774584"
+      },
+      "itens": [
+         {
+            "item": {
+               "codigo": "5602660004319",
+               "descricao": "CEREMONY TAWNY 10 ANOS 50ML",
+               "unidade": "UN",
+               "quantidade": "1",
+               "valor_unitario": "24.90"
+            }
+         },
+         {
+            "item": {
+               "codigo": "5602012602347",
+               "descricao": "TERRAS DE XISTO TN 750ML",
+               "unidade": "UN",
+               "quantidade": "1",
+               "valor_unitario": "54.90"
+            }
+         },
+         {
+            "item": {
+               "codigo": "7804452006305",
+               "descricao": "3 ORIGENES TN 750ML BLEND",
+               "unidade": "UN",
+               "quantidade": "1",
+               "valor_unitario": "210.00"
+            }
+         }
+      ],
+      "valor_desconto": "28.98"
+   }
+}

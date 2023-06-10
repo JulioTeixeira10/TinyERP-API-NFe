@@ -1,0 +1,14 @@
+{
+    "retorno": {
+        "status_processamento": "3",
+        "status": "OK",
+        "registros": {
+            "registro": {
+                "sequencia": "1",
+                "status": "OK",
+                "id": 123456789,
+                "numero": "10"
+            }
+        }
+    }
+}

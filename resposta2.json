@@ -1,0 +1,13 @@
+{
+    "retorno": {
+        "status_processamento": "3",
+        "status": "OK",
+        "registros": {
+            "registro": {
+                "idNotaFiscal": 123456789,
+                "numero": "000001",
+                "serie": "1"
+            }
+        }
+    }
+}
