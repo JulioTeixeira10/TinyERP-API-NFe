@@ -4,8 +4,7 @@ import json
 import time
 import json_builder
 import error_pop_up
-
-
+import sys
 # Diretorios
 mainDir = "C:\\TinyAPI\\"
 dirToken = f"{mainDir}" + "token.cfg"
@@ -75,7 +74,7 @@ def enviarREST(url, data):
         else:
             error_pop_up.pop_up_erro(f"2ª Request: Houve um erro ao enviar o Cupom Fiscal: {erro}")
             error_pop_up.log_erro(response.text)
-        exit()
+        sys.exit()
 
 # Chama a função
 response = enviarREST(url_incluir_pedido, data)
