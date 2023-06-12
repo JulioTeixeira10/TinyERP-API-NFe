@@ -1,6 +1,6 @@
 nome = "CONSUMIDORA 4"
 
-cpf_cnpj = "22755771211"
+cpf_cnpj = "22755771212"
 
 desconto = "28.98"
 

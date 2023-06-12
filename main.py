@@ -56,9 +56,11 @@ def enviarREST(url, data):
     
     if '"status":"OK"' in response.text:
         if c == 0:
+            error_pop_up.log_info(response.text)
             c = 1
         else:
             error_pop_up.pop_up_check("O Cupom Fiscal foi enviado ao TinyERP com sucesso.")
+            error_pop_up.log_info(response.text)
         return response.text
     else:
         # Transforma a reposta em um objeto JSON formatavel
@@ -69,8 +71,10 @@ def enviarREST(url, data):
 
         if c == 0:
             error_pop_up.pop_up_erro(f"1ª Request: Houve um erro ao incluir o pedido: {erro}")
+            error_pop_up.log_erro(response.text)
         else:
             error_pop_up.pop_up_erro(f"2ª Request: Houve um erro ao enviar o Cupom Fiscal: {erro}")
+            error_pop_up.log_erro(response.text)
         exit()
 
 # Chama a função
