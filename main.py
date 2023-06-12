@@ -3,6 +3,8 @@ from configparser import ConfigParser
 import json
 import time
 import json_builder
+import error_pop_up
+
 
 # Diretorios
 mainDir = "C:\\TinyAPI\\"
@@ -10,6 +12,8 @@ dirToken = f"{mainDir}" + "token.cfg"
 dirPedido = f"{mainDir}" + "pedido.json"
 dirResposta = f"{mainDir}" + "resposta.json"
 dirResposta2 = f"{mainDir}" + "resposta2.json"
+
+c = 0
 
 # Função para ler arquivos json
 def read_json(diretorio):
@@ -32,7 +36,7 @@ token = KEY["token"]
 # Chama a função que constroi o JSON a partir dos dados recebidos
 json_builder.build_json()
 
-time.sleep(1)
+time.sleep(0.3)
 
 # Lê o json que contem o pedido
 read_json(dirPedido)
@@ -45,14 +49,29 @@ data = f"token={token}&pedido={json.dumps(dados)}&formato=JSON"
 
 # Função para mandar a request
 def enviarREST(url, data):
+    global c
     headers = {"Content-Type": "application/x-www-form-urlencoded"}
     
     response = requests.post(url, data=data, headers=headers)
     
-    if response.ok:
+    if '"status":"OK"' in response.text:
+        if c == 0:
+            c = 1
+        else:
+            error_pop_up.pop_up_check("O Cupom Fiscal foi enviado ao TinyERP com sucesso.")
         return response.text
     else:
-        raise Exception(f"Problema com {url}, {response.status_code}, {response.text}")
+        # Transforma a reposta em um objeto JSON formatavel
+        erro = json.loads(response.text)
+        erro_json_str = json.dumps(erro, indent=4)
+        erro_json = json.loads(erro_json_str)
+        erro = erro_json["retorno"]["registros"]["registro"]["erros"][0]
+
+        if c == 0:
+            error_pop_up.pop_up_erro(f"1ª Request: Houve um erro ao incluir o pedido: {erro}")
+        else:
+            error_pop_up.pop_up_erro(f"2ª Request: Houve um erro ao enviar o Cupom Fiscal: {erro}")
+        exit()
 
 # Chama a função
 response = enviarREST(url_incluir_pedido, data)
@@ -60,7 +79,7 @@ response = enviarREST(url_incluir_pedido, data)
 # Cria um arquivo com a resposta do servidor
 response_file(dirResposta)
 
-time.sleep(1)
+time.sleep(0.3)
 
 # Pega o id do pedido recem criado
 read_json(dirResposta)
