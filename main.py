@@ -65,7 +65,7 @@ def enviarREST(url, data):
             error_pop_up.log_info(response.text)
         return response.text
     else:
-        # Transforma a reposta em um objeto JSON formatavel
+        # Transforma a resposta em um objeto JSON formatavel
         erro = json.loads(response.text)
         erro_json_str = json.dumps(erro, indent=4)
         erro_json = json.loads(erro_json_str)
