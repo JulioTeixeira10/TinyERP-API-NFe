@@ -1,10 +1,12 @@
-import requests
-from configparser import ConfigParser
+import sys
 import json
 import time
+import requests
 import json_builder
 import error_pop_up
-import sys
+from configparser import ConfigParser
+
+
 # Diretorios
 mainDir = "C:\\TinyAPI\\"
 dirToken = f"{mainDir}" + "token.cfg"
@@ -12,6 +14,7 @@ dirPedido = f"{mainDir}" + "pedido.json"
 dirResposta = f"{mainDir}" + "resposta.json"
 dirResposta2 = f"{mainDir}" + "resposta2.json"
 
+# Variavel para numerar requests
 c = 0
 
 # Função para ler arquivos json
@@ -76,7 +79,7 @@ def enviarREST(url, data):
             error_pop_up.log_erro(response.text)
         sys.exit()
 
-# Chama a função
+# Chama a função para enviar a request
 response = enviarREST(url_incluir_pedido, data)
 
 # Cria um arquivo com a resposta do servidor

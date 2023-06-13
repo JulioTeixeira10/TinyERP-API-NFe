@@ -1,24 +1,39 @@
 import json
-import dados_pedido
+import configparser
 
+
+# Configura o configparser
+config = configparser.ConfigParser()
+config.read('C:\\TinyAPI\\dados.cfg')
+
+# Transfere as variaveis do arquivo .cfg
+nome = config['DEFAULT']['nome']
+cpf_cnpj = config['DEFAULT']['cpf_cnpj']
+desconto = config['DEFAULT']['desconto']
+itens_str = config['DEFAULT']['itens']
+
+itens = json.loads(itens_str)
+
+
+# Função para construir o arquivo JSON do pedido
 def build_json():
-    # Diretorio onde será armazenado o pedido
+
     dirPedido = "C:\\TinyAPI\\pedido.json"
 
     # Constroi a estrutura do JSON com as informções do pedido
     data = {
         "pedido": {
             "cliente": {
-                "nome": dados_pedido.nome,
-                "cpf_cnpj": dados_pedido.cpf_cnpj
+                "nome": nome,
+                "cpf_cnpj": cpf_cnpj
             },
             "itens": [
                 {
                     "item": item
                 }
-                for item in dados_pedido.itens
+                for item in itens
             ],
-            "valor_desconto": dados_pedido.desconto
+            "valor_desconto": desconto
         }
     }
 

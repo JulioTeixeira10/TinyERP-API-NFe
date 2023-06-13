@@ -1,8 +1,8 @@
 {
    "pedido": {
       "cliente": {
-         "nome": "CONSUMIDORA 4",
-         "cpf_cnpj": "22755771212"
+         "nome": "teste 123",
+         "cpf_cnpj": "22755710000"
       },
       "itens": [
          {
