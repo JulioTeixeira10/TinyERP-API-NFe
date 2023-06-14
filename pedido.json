@@ -1,13 +1,13 @@
 {
    "pedido": {
       "cliente": {
-         "nome": "Teste 1234567",
-         "cpf_cnpj": "2275571145241"
+         "nome": "aassdddcccfabde",
+         "cpf_cnpj": "2275571177871"
       },
       "itens": [
          {
             "item": {
-               "codigo": "5602660004319",
+               "codigo": "5602660004874",
                "descricao": "CEREMONY TAWNY 10 ANOS 50ML",
                "unidade": "UN",
                "quantidade": "1",

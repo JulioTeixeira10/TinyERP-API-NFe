@@ -1,9 +1,4 @@
-import sys
-import json
-import time
-import requests
-import json_builder
-import error_pop_up
+import sys, json, time, requests, json_builder, error_pop_up, win32api, win32con
 from configparser import ConfigParser
 
 
@@ -14,20 +9,35 @@ dirPedido = f"{mainDir}" + "pedido.json"
 dirResposta = f"{mainDir}" + "resposta.json"
 dirResposta2 = f"{mainDir}" + "resposta2.json"
 
+try:
+    win32api.SetFileAttributes(dirPedido, win32con.FILE_ATTRIBUTE_NORMAL)
+except:
+    pass
+
 # Variavel para numerar requests
 c = 0
 
 # Função para ler arquivos json
 def read_json(diretorio):
+    try:
+        win32api.SetFileAttributes(diretorio, win32con.FILE_ATTRIBUTE_NORMAL)
+    except:
+        pass
     with open(diretorio) as file:
         global dados
         dados = json.load(file)
+        win32api.SetFileAttributes(diretorio, win32con.FILE_ATTRIBUTE_HIDDEN)
 
 # Função para criar arquivos com a resposta do server
 def response_file(diretorio):
+    try:
+        win32api.SetFileAttributes(diretorio, win32con.FILE_ATTRIBUTE_NORMAL)
+    except:
+        pass
     with open(diretorio, "w+") as f:
         f.write(response)
         f.close()
+        win32api.SetFileAttributes(diretorio, win32con.FILE_ATTRIBUTE_HIDDEN)
 
 # Importação do token
 config_object = ConfigParser()
