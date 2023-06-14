@@ -61,7 +61,7 @@ def enviarREST(url, data):
             error_pop_up.log_info(response.text)
             c = 1
         else:
-            error_pop_up.pop_up_check("O Cupom Fiscal foi enviado ao TinyERP com sucesso.")
+            error_pop_up.pop_up_check("A venda foi enviada ao TinyERP com sucesso.")
             error_pop_up.log_info(response.text)
         return response.text
     else:
