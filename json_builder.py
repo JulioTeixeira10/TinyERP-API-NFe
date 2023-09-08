@@ -33,7 +33,8 @@ def build_json():
                 }
                 for item in itens
             ],
-            "valor_desconto": desconto
+            "valor_desconto": desconto,
+            "obs_internas": "CFe"
         }
     }
 
