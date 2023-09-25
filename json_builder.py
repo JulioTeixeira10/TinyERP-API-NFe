@@ -34,6 +34,7 @@ def build_json():
                 for item in itens
             ],
             "valor_desconto": desconto,
+            "forma_pagamento": "dinheiro",
             "obs_internas": "CFe"
         }
     }
