@@ -11,6 +11,7 @@ nome = config['DEFAULT']['nome']
 cpf_cnpj = config['DEFAULT']['cpf_cnpj']
 desconto = config['DEFAULT']['desconto']
 itens_str = config['DEFAULT']['itens']
+pagamento = config['DEFAULT']['forma_de_pagamento']
 
 itens = json.loads(itens_str)
 
@@ -34,7 +35,7 @@ def build_json():
                 for item in itens
             ],
             "valor_desconto": desconto,
-            "forma_pagamento": "dinheiro",
+            "forma_pagamento": pagamento,
             "obs_internas": "CFe"
         }
     }
