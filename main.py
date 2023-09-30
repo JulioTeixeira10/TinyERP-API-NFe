@@ -56,12 +56,14 @@ read_json(dirPedido)
 # Informações para o envio das requests
 url_incluir_pedido = 'https://api.tiny.com.br/api2/pedido.incluir.php'
 url_gerar_NFCe = "https://api.tiny.com.br/api2/gerar.nota.fiscal.pedido.php"
+url_cancelar_pedido = "https://api.tiny.com.br/api2/pedido.alterar.situacao"
 
 data = f"token={token}&pedido={json.dumps(dados)}&formato=JSON"
 
 # Função para mandar a request
 def enviarREST(url, data):
     global c
+    global headers
     headers = {"Content-Type": "application/x-www-form-urlencoded"}
     
     response = requests.post(url, data=data, headers=headers)
@@ -104,6 +106,10 @@ id = dados["retorno"]["registros"]["registro"]["id"]
 # Manda a request para gerar a NFCe
 data = f"token={token}&id={id}&modelo=NFCe&formato=JSON"
 response = enviarREST(url_gerar_NFCe, data)
+
+# Manda a request para cancelar o pedido e estornar o estoque
+data = f"token={token}&id={id}&situacao=cancelado&formato=JSON"
+response3 = requests.post(url_cancelar_pedido, data, headers=headers)
 
 # Cria um arquivo com a resposta do servidor
 response_file(dirResposta2)
