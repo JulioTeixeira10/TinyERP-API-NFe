@@ -12,6 +12,7 @@ cpf_cnpj = config['DEFAULT']['cpf_cnpj']
 desconto = config['DEFAULT']['desconto']
 itens_str = config['DEFAULT']['itens']
 pagamento = config['DEFAULT']['forma_de_pagamento']
+meio_pag = config['DEFAULT']['meio_pag']
 
 itens = json.loads(itens_str)
 
@@ -21,7 +22,7 @@ def build_json():
 
     dirPedido = "C:\\TinyAPI\\pedido.json"
 
-    # Constroi a estrutura do JSON com as informções do pedido
+    # Constroi a estrutura do JSON com as informações do pedido
     data = {
         "pedido": {
             "cliente": {
@@ -36,6 +37,15 @@ def build_json():
             ],
             "valor_desconto": desconto,
             "forma_pagamento": pagamento,
+            "meio_pagamento": meio_pag,
+            "parcelas": [
+                {
+                    "parcela": {
+                    "forma_pagamento": pagamento,
+                    "meio_pagamento": meio_pag
+                }
+                }
+            ],
             "obs_internas": "CFe"
         }
     }
