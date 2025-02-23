@@ -1,5 +1,6 @@
 import sys, json, time, requests, json_builder, error_pop_up, win32api, win32con
 from configparser import ConfigParser
+import urllib.parse
 
 
 # Diretorios
@@ -8,6 +9,8 @@ dirToken = f"{mainDir}" + "token.cfg"
 dirPedido = f"{mainDir}" + "pedido.json"
 dirResposta = f"{mainDir}" + "resposta.json"
 dirResposta2 = f"{mainDir}" + "resposta2.json"
+dirProdutos = f"{mainDir}" + "produtos.json"
+
 
 try:
     win32api.SetFileAttributes(dirPedido, win32con.FILE_ATTRIBUTE_NORMAL)
@@ -41,7 +44,7 @@ def response_file(diretorio):
 
 # Importação do token
 config_object = ConfigParser()
-config_object.read(dirToken)
+config_object.read(dirToken, encoding='utf-8')
 KEY = config_object["KEY"]
 token = KEY["token"]
 
@@ -54,11 +57,29 @@ time.sleep(0.3)
 read_json(dirPedido)
 
 # Informações para o envio das requests
+url_incluir_produtos = 'https://api.tiny.com.br/api2/produto.incluir.php'
 url_incluir_pedido = 'https://api.tiny.com.br/api2/pedido.incluir.php'
 url_gerar_NFCe = "https://api.tiny.com.br/api2/gerar.nota.fiscal.pedido.php"
 url_cancelar_pedido = "https://api.tiny.com.br/api2/pedido.alterar.situacao"
 
 data = f"token={token}&pedido={json.dumps(dados)}&formato=JSON"
+
+# Cadastra todos os produtos que estão no CFe
+try:
+    with open(dirProdutos, "r", encoding="utf-8") as file:
+        produtos = json.load(file)
+
+    # Convert to JSON and URL-encode
+    json_produtos = json.dumps(produtos, ensure_ascii=False)
+    encoded_produtos = urllib.parse.quote(json_produtos) 
+
+    data2 = f"token={token}&produto={encoded_produtos}&formato=JSON"
+    
+    response = requests.post(url_incluir_produtos, data=data2, headers={"Content-Type": "application/x-www-form-urlencoded"})
+    resposta = response.text
+except Exception as e:
+    error_pop_up.pop_up_erro(f"Houve um erro ao cadastrar os produtos do cupom fiscal: {e}")
+    error_pop_up.log_erro(e)
 
 # Função para mandar a request
 def enviarREST(url, data):
@@ -93,6 +114,7 @@ def enviarREST(url, data):
 
 # Chama a função para enviar a request
 response = enviarREST(url_incluir_pedido, data)
+print(response)
 
 # Cria um arquivo com a resposta do servidor
 response_file(dirResposta)
